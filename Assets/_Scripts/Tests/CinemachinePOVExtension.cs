@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
 using Cinemachine;
+using UnityEngine.InputSystem;
 
 public class CinemachinePOVExtension : CinemachineExtension
 {
-    private InputManager inputManager;
+    [SerializeField] private InputManager inputManager;
     private Vector3 startingRotation;
 
     private float _clampAngle = 80f;
@@ -12,7 +13,7 @@ public class CinemachinePOVExtension : CinemachineExtension
 
     protected override void Awake()
     {
-        inputManager = InputManager.Instance;
+        
         base.Awake();
     }
 
@@ -25,7 +26,8 @@ public class CinemachinePOVExtension : CinemachineExtension
                 if (startingRotation == null) startingRotation = transform.localRotation.eulerAngles;
 
 
-                Vector2 deltaInput = inputManager.GetMouseDelta();
+                //Vector2 deltaInput = inputManager.GetMouseDelta();
+                Vector2 deltaInput = Mouse.current.delta.ReadValue();
                 startingRotation.x += deltaInput.x * _speed * Time.deltaTime;
                 startingRotation.y += deltaInput.y * _speed * Time.deltaTime;
 

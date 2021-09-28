@@ -7,6 +7,7 @@ public class PlayerMoveController : NetworkBehaviour
 {
     [SerializeField] private float movementSpeed = 5f;
     [SerializeField] private CharacterController controller;
+    [SerializeField] private Transform _cinemachineTransform;
 
     private Vector2 previousInput;
 
@@ -47,17 +48,12 @@ public class PlayerMoveController : NetworkBehaviour
     [Client]
     private void Move()
     {
-        Vector3 right = controller.transform.right;
-        Vector3 forward = controller.transform.forward;
 
-        right.y = 0f;
-        forward.y = 0f;
+        Vector3 move = new Vector3(previousInput.x, 0, previousInput.y);
+        move = _cinemachineTransform.forward * move.z + _cinemachineTransform.right * move.x;
+        move.y = 0f;
+        controller.Move(move * Time.deltaTime * movementSpeed);
 
-        Vector3 movement = right.normalized * previousInput.x + forward.normalized * previousInput.y;
-
-        controller.Move(movement * movementSpeed * Time.deltaTime);
     }
-
-
 
 }

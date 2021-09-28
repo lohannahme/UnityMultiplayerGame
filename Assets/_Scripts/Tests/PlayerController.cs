@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : NetworkBehaviour
 {
     private CharacterController controller;
     private Vector3 playerVelocity;
@@ -11,13 +12,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float _jumpHeight = .5f; //renomar variaveis privadas com _
     private float gravityValue = -9.81f;
+    [SerializeField]
     private InputManager inputManager;
     private Transform cameraTransform;
 
     private void Start()
     {
         controller = GetComponent<CharacterController>();
-        inputManager = InputManager.Instance;
         cameraTransform = Camera.main.transform;
     }
 

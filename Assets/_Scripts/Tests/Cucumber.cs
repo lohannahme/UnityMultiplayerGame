@@ -12,7 +12,6 @@ public class Cucumber : MonoBehaviour
     private BoxCollider boxCollider;
     void Start()
     {
-        inputManager = InputManager.Instance;
         boxCollider = GetComponent<BoxCollider>();
     }
 
