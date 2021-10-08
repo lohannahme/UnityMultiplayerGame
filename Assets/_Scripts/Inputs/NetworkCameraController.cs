@@ -6,10 +6,10 @@ using UnityEngine.InputSystem;
 public class NetworkCameraController : NetworkBehaviour
 {
     [Header("Camera")]
-    [SerializeField] private Vector2 maxFollowOffset = new Vector2(-1f, 6f);
-    [SerializeField] private Vector2 cameraVelocity = new Vector2(4f, .25f);
-    [SerializeField] private Transform playerTransform = null;
-    [SerializeField] private CinemachineVirtualCamera virtualCamera = null;
+    [SerializeField] private Vector2 _maxFollowOffset = new Vector2(-1f, 6f);
+    [SerializeField] private Vector2 _cameraVelocity = new Vector2(4f, .25f);
+    [SerializeField] private Transform _playerTransform = null;
+    [SerializeField] private CinemachineVirtualCamera _virtualCamera = null;
     [SerializeField] private CinemachinePOVExtension _povExtension;
 
     private Controls controls;
@@ -27,7 +27,7 @@ public class NetworkCameraController : NetworkBehaviour
     public override void OnStartAuthority()
     {
        
-        virtualCamera.gameObject.SetActive(true);
+        _virtualCamera.gameObject.SetActive(true);
 
         _povExtension.enabled = true;
 

@@ -5,8 +5,8 @@ using Mirror;
 
 public class PlayerMoveController : NetworkBehaviour
 {
-    [SerializeField] private float movementSpeed = 5f;
-    [SerializeField] private CharacterController controller;
+    [SerializeField] private float _movementSpeed = 5f;
+    [SerializeField] private CharacterController _controller;
     [SerializeField] private Transform _cinemachineTransform;
 
     private Vector2 previousInput;
@@ -52,7 +52,7 @@ public class PlayerMoveController : NetworkBehaviour
         Vector3 move = new Vector3(previousInput.x, 0, previousInput.y);
         move = _cinemachineTransform.forward * move.z + _cinemachineTransform.right * move.x;
         move.y = 0f;
-        controller.Move(move * Time.deltaTime * movementSpeed);
+        _controller.Move(move * Time.deltaTime * _movementSpeed);
 
     }
 
